@@ -1,0 +1,1236 @@
+/* === Variables de tema === */
+body.light {
+  --bg-color: #f4f4f4;
+  --text-color: #222;
+  --sidebar-bg: #d82f2f;
+  --sidebar-text: #fff;
+  --form-bg: #ffffff;
+  --form-input-bg: #ffffff;
+  --form-input-text: #000000;
+  --form-shadow: rgba(0, 0, 0, 0.1);
+  --form-button-bg: #d82f2f;
+  --form-button-hover: #b82323;
+  --card-bg: #fff;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --link-hover: #00bcd4;
+  --danger: #e74c3c;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --sidebar-bg: #1f1f1f;
+  --sidebar-text: #ffffff;
+  --form-bg: #1e1e1e;
+  --form-input-bg: #2c2c2c;
+  --form-input-text: #ffffff;
+  --form-shadow: rgba(255, 255, 255, 0.05);
+  --form-button-bg: #d82f2f;
+  --form-button-hover: #b82323;
+  --card-bg: #232526;
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --link-hover: #00bcd4;
+  --danger: #e74c3c;
+}
+
+/* === Estilo global === */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* === Animaciones === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardPop {
+  0% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 220px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-nav a,
+.sidebar-nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  margin: 10px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 8px 0;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.sidebar-nav a:focus,
+.sidebar-nav button:focus {
+  outline: 2px solid var(--link-hover);
+  outline-offset: 2px;
+}
+
+.sidebar a:hover,
+.sidebar button:hover {
+  color: var(--link-hover);
+}
+
+/* === Parte inferior del sidebar === */
+.sidebar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === Botón de cambio de tema === */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  color: var(--link-hover);
+  transform: rotate(-15deg) scale(1.15);
+}
+
+/* === Botón de logout === */
+.logout-button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* === Login Container === */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--bg-color);
+  animation: fadeIn 0.7s;
+}
+
+
+/* === Formulario Login === */
+.login-form {
+  max-width: 420px;
+  width: 100%;
+  background-color: var(--form-bg);
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px var(--form-shadow);
+  animation: fadeIn 0.6s;
+  color: var(--text-color);
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #d80f0f;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+  background-color: var(--form-input-bg);
+  color: var(--form-input-text);
+}
+
+.login-form input:focus {
+  border-color: #00bcd4;
+  outline: none;
+  background: #f0faff;
+  color: #222;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--form-button-bg);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-form button:hover,
+.login-form button:focus {
+  background-color: var(--form-button-hover);
+  transform: scale(1.04);
+}
+
+/* === Mensaje de formulario === */
+.form-msg {
+  text-align: center;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 10px;
+}
+
+/* === Enlaces del formulario === */
+.form-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.form-link a {
+  color: #00bcd4;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.form-link a:hover,
+.form-link a:focus {
+  text-decoration: underline;
+  color: #d82f2f;
+}
+
+/* === Tarjetas generales (dashboard, cards, etc) === */
+.card,
+.dashboard-cards>div {
+  background: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+  padding: 2rem;
+  min-width: 180px;
+  transition: box-shadow 0.3s, transform 0.2s;
+  animation: fadeIn 0.7s;
+}
+
+.card:hover,
+.dashboard-cards>div:hover,
+.card:focus,
+.dashboard-cards>div:focus {
+  box-shadow: 0 8px 32px var(--form-shadow);
+  animation: cardPop 0.3s;
+  transform: translateY(-4px) scale(1.03);
+}
+
+/* === Botones generales y de perfil === */
+.profile-btn {
+  background: var(--form-button-bg);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px var(--form-shadow);
+  display: inline-block;
+}
+
+.profile-btn:hover,
+.profile-btn:focus {
+  background: var(--form-button-hover);
+  transform: scale(1.06);
+}
+
+.profile-btn.danger {
+  background: var(--danger);
+}
+
+.profile-btn.danger:hover,
+.profile-btn.danger:focus {
+  background: #c0392b;
+}
+
+/* === Página y contenedores === */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: transparent; /* <-- Cambia esto */
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: #d82f2f;
+  letter-spacing: 1px;
+}
+
+/* === Perfil === */
+.page-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+  background-color: transparent; /* <-- Cambia esto */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.profile-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 4px solid #d82f2f;
+  box-shadow: 0 2px 12px var(--form-shadow);
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  animation: fadeIn 0.7s;
+}
+
+.profile-section h3 {
+  margin-top: 0;
+  color: #d82f2f;
+}
+
+.profile-section ul {
+  padding-left: 1.2rem;
+}
+
+.profile-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* === Dashboard links === */
+.dashboard-links a {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  text-decoration: none;
+  background: var(--form-button-bg);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.dashboard-links a:hover,
+.dashboard-links a:focus {
+  background: var(--form-button-hover);
+  transform: scale(1.06);
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .dashboard-cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .services-grid,
+  .portfolio-grid,
+  .testimonials-grid,
+  .team-grid,
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-form {
+    max-width: 100%;
+    border-radius: 12px;
+    padding: 30px 20px;
+  }
+
+  .profile-container,
+  .profile-section {
+    padding: 1rem;
+  }
+
+  .page {
+    padding: 20px 5px 40px 5px;
+  }
+}
+
+/* === Header === */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0 2px 10px var(--form-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header .logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #d82f2f;
+  letter-spacing: 1px;
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation ul li {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navigation ul li:last-child {
+  margin-right: 0;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navigation ul li a:hover,
+.navigation ul li a:focus {
+  color: var(--link-hover);
+}
+
+/* === Footer === */
+.footer {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* === Scrollbar personalizado === */
+::-webkit-scrollbar {
+  width: 10px;
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d82f2f;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b82323;
+}
+
+/* Loader */
+.loader-users {
+  margin: 40px auto 0 auto;
+  border: 6px solid #eee;
+  border-top: 6px solid #d82f2f;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 0.9s linear infinite;
+}
+
+/* === Input de búsqueda de usuarios === */
+.user-search-input {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #cccccc;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  width: 100%;
+  max-width: 320px;
+  background: var(--form-input-bg);
+  color: var(--form-input-text);
+  box-shadow: 0 2px 8px var(--form-shadow);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.user-search-input:focus {
+  border-color: #00bcd4;
+  outline: none;
+  box-shadow: 0 4px 16px var(--form-shadow);
+}
+
+/* === Botones de acción en la tabla de usuarios === */
+.user-table-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* === Tabla de usuarios: fondo y color según tema === */
+.user-table th {
+  background: #d82f2f !important;
+  color: #fff !important;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light .user-table td {
+  background: #fff;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark .user-table td {
+  background: #232526;
+  color: #f1f1f1;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Resalta el enlace activo */
+.active-link {
+  color: #d82f2f !important;
+  border-bottom: 2px solid #d82f2f;
+  padding-bottom: 2px;
+}
+
+/* Responsive para header */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 8px;
+  }
+
+  .navigation ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Register page background */
+.register-bg {
+  min-height: 100vh;
+  background: #fff6f6;
+  /* rojo muy suave */
+  display: flex;
+  flex-direction: column;
+}
+
+.register-bg.dark {
+  background: #232526;
+}
+
+/* Centrado del formulario */
+.register-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Formulario */
+.register-form {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 36px 28px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-bg.dark .register-form {
+  background: #232526;
+  color: #f1f1f1;
+}
+
+.register-form h2 {
+  color: #e53935;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.register-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f9f9f9;
+  transition: border 0.2s;
+}
+
+.register-form input:focus {
+  border-color: #e53935;
+  outline: none;
+  background: #f0faff;
+  color: #222;
+}
+
+.register-bg.dark .register-form input {
+  background: #18191a;
+  border: 1px solid #444;
+  color: #f1f1f1;
+}
+
+.register-form button {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.register-form button:hover,
+.register-form button:focus {
+  background: #b71c1c;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 20px 60px 20px;
+  text-align: center;
+  color: #fff;
+  background: transparent;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+.highlight {
+  color: #ffe082;
+  background: #e53935;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 32px;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: #fff;
+  color: #e53935;
+  font-weight: bold;
+  padding: 14px 36px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(229, 57, 53, 0.12);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.hero-cta:hover,
+.hero-cta:focus {
+  background: #e53935;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 36px;
+  color: #e53935;
+  letter-spacing: 1px;
+}
+
+/* Servicios */
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 30px;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 28px 22px;
+  width: 240px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-card:hover,
+.service-card:focus {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.13);
+}
+
+.service-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Portafolio */
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.portfolio-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  width: 240px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.portfolio-card:hover,
+.portfolio-card:focus {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.13);
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.portfolio-card h4 {
+  margin: 12px 0 6px 0;
+  color: #e53935;
+}
+
+/* Testimonios */
+.testimonials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 24px 18px;
+  width: 260px;
+  font-style: italic;
+  color: #e53935;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.testimonial-card:hover,
+.testimonial-card:focus {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.13);
+}
+
+.testimonial-card strong {
+  display: block;
+  margin-top: 10px;
+  color: #222;
+  font-style: normal;
+}
+
+/* Equipo */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px;
+}
+
+.team-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 22px 14px;
+  width: 180px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.team-card:hover,
+.team-card:focus {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.13);
+}
+
+.team-card img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.team-card h4 {
+  margin: 8px 0 4px 0;
+  color: #e53935;
+}
+
+/* Contacto */
+.contact-form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #e53935;
+  outline: none;
+}
+
+.contact-form button {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.contact-form button:hover,
+.contact-form button:focus {
+  background: #b71c1c;
+  transform: scale(1.04);
+}
+
+/* Clientes logos */
+.clients-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 36px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.clients-logos img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.8);
+  opacity: 0.8;
+  transition: filter 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.clients-logos img:hover,
+.clients-logos img:focus {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Proceso de trabajo */
+.process-steps {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.process-step {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 28px 22px;
+  width: 240px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.process-step:hover,
+.process-step:focus {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(229, 57, 53, 0.13);
+}
+
+.process-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* FAQ */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.faq-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 18px 22px;
+  transition: box-shadow 0.2s;
+}
+
+.faq-item:hover,
+.faq-item:focus {
+  box-shadow: 0 6px 18px rgba(229, 57, 53, 0.13);
+}
+
+.faq-item h4 {
+  margin-bottom: 6px;
+  color: #e53935;
+}
+
+/* CTA Final */
+.cta-final-section {
+  background: linear-gradient(90deg, #ff5858 0%, #f09819 100%);
+  color: #fff;
+  text-align: center;
+  padding: 48px 20px 60px 20px;
+}
+
+.cta-final-section h2 {
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+.cta-final-btn {
+  background: #fff;
+  color: #e53935;
+  font-weight: bold;
+  padding: 14px 36px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(229, 57, 53, 0.12);
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.cta-final-btn:hover,
+.cta-final-btn:focus {
+  background: #e53935;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Mejor media query final para grids */
+@media (max-width: 900px) {
+
+  .services-grid,
+  .portfolio-grid,
+  .testimonials-grid,
+  .team-grid,
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+}
+
+/* === Animación de aparición para Home.jsx === */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(.77, 0, .18, 1), transform 0.8s cubic-bezier(.77, 0, .18, 1);
+  will-change: opacity, transform;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mejoras visuales para cards y grids del Home */
+.service-card,
+.portfolio-card,
+.testimonial-card,
+.team-card,
+.process-step,
+.faq-item {
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.service-card:hover,
+.portfolio-card:hover,
+.testimonial-card:hover,
+.team-card:hover,
+.process-step:hover,
+.faq-item:hover {
+  box-shadow: 0 16px 48px rgba(216, 47, 47, 0.18);
+  transform: translateY(-8px) scale(1.04);
+}
+
+/* Responsive para grids del Home */
+@media (max-width: 900px) {
+
+  .services-grid,
+  .portfolio-grid,
+  .testimonials-grid,
+  .team-grid,
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor principal de la página */
+.main-content {
+  flex: 1; /* Hace que el contenido principal crezca para ocupar el espacio disponible */
+}
+
+/* Footer mejorado */
+.footer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 32px 0 16px 0;
+  background-color: var(--bg-color, #181818);
+  color: var(--text-color, #fff);
+  margin-top: auto; /* Esto empuja el footer hacia abajo */
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor para los elementos dentro del footer */
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+/* Bloques dentro del footer */
+.footer-block {
+  flex: 1 1 220px;
+  min-width: 180px;
+  margin-bottom: 12px;
+}
+
+/* Estilo para los encabezados dentro del footer */
+.footer-block h3,
+.footer-block h4 {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #d82f2f;
+}
+
+/* Redes sociales */
+.footer-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+  margin-left: 123px;
+}
+
+/* Estilo para los enlaces en redes sociales */
+.footer-social a {
+  color: inherit;
+  font-size: 22px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer-social a:hover,
+.footer-social a:focus {
+  color: #d82f2f;
+  transform: scale(1.2);
+}
+
+/* Estilo para el texto de copyright */
+.footer-copy {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .footer-block {
+    margin-bottom: 0;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.user-placeholder {
+  font-style: italic;
+  color: #b0b0b0;
+}
+
+/* Servicios en una sola fila y responsivo */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animación blink/acento para iconos y highlights */
+@keyframes blink {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 16px #e74c3c88); }
+}
+
+/* Animación de entrada */
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
