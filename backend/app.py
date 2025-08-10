@@ -15,6 +15,10 @@ CORS(app)  # Permitir peticiones desde React
 # Inicializar base de datos
 init_db()
 
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "API Reflexo Agency online "})
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "GET":
