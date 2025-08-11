@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserTable from "../../components/UserTable";
-import { getUsers } from "../../services/userService";
+import { getUsers } from "../../services/localUserService";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext";

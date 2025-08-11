@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getUsers, updateUser, deleteUser } from "../services/userService";
+import { getUsers, createUser, updateUser, deleteUser } from "../services/localUserService";
 import toast from "react-hot-toast";
-import { FiEdit2, FiTrash2, FiUserPlus, FiUsers } from "react-icons/fi";
+import { FiEdit2, FiTrash2, FiUserPlus } from "react-icons/fi";
 import "../App.css";
 
 // Utilidad para autocompletar campos vacíos
@@ -122,7 +122,7 @@ export default function UserTable({ users, setUsers }) {
             padding: "12px 18px",
             borderRadius: "8px",
             border: "1.5px solid #222",
-            color: "#111", // Letras negras
+            color: "#111",
             background: "#fff",
             fontWeight: "600",
             margin: "0 auto",
